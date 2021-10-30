@@ -1,0 +1,11 @@
+{
+  "name": "pixelgame",
+  "version": "1.0.0",
+  "description": "pixel drawing game for my friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "zach f",
+  "license": "ISC"
+}
