@@ -181,6 +181,7 @@ function App() {
       <div className={classes.pixelGameArea}>
         <div>
           Width:
+          
           <button onClick={() => {setWidth(width - 1)}}>
             -
           </button>
