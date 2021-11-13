@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const defaultBaseURL = 'http://localhost:8000'
+const defaultBaseURL = 'http://localhost:5001'
 
 axios.defaults.withCredentials = true;
 

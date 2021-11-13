@@ -46,6 +46,7 @@ function Footer(props) {
           <div className={classes.icons}>
             <img className={props.tool == 0? classes.selectedIcon : classes.icon} src={process.env.PUBLIC_URL + '/icons8-edit-50.png'} onClick={() => { props.setTool(0) }}/>
             <img className={props.tool == 1? classes.selectedIcon : classes.icon} src={process.env.PUBLIC_URL + '/icons8-erase-50.png'} onClick={() => { props.setTool(1) }}/>
+            <img className={props.tool == 2? classes.selectedIcon : classes.icon} src={process.env.PUBLIC_URL + '/icons8-color-dropper-50.png'} onClick={() => { props.setTool(2) }}/>
             {/*   <img className={props.tool == 2? classes.selectedIcon : classes.icon} src={process.env.PUBLIC_URL + '/icons8-paint-palette-50.png'} onClick={() => { props.setTool(2) }}/>   */}
           </div>
           <span className={classes.creditText}>

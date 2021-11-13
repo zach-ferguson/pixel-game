@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-export const DebouncedPicker = ({ color, onChange, setSelectedColor }) => {
+export const DebouncedPicker = ({ color, onChange, selectedColor, setSelectedColor }) => {
   const classes = useStyles();
   const [value, setValue] = useState(color);
 
@@ -28,7 +28,7 @@ export const DebouncedPicker = ({ color, onChange, setSelectedColor }) => {
   return (
     <div className={classes.root}>
         <HexColorPicker color={value} onChange={setValue} />
-        <div className={classes.colorDisplay} style={{ backgroundColor: value }}/>
+        <div className={classes.colorDisplay} style={{ backgroundColor: selectedColor }}/>
     </div>
   )
 };
