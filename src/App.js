@@ -62,6 +62,7 @@ function App() {
   const getUserData = async() => {
     try{
       const data = await api.get('/users/')
+      console.log(data)
       setData(data.data)
     } catch(err){
       console.error(err)

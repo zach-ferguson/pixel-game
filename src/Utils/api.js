@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const defaultBaseURL = 'http://localhost:5001'
+const defaultBaseURL = '/api/'
 
 axios.defaults.withCredentials = true;
 
