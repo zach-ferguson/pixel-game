@@ -54,25 +54,20 @@ function Gallery() {
   },[])
 
   const galleryItems = galleryData.map((galleryItem) => {
-      try{
-        return(
-            <div className={classes.galleryItem}>
-                <div className={classes.contents}>
-                    <p>Author: {galleryItem.author}</p>
-                    <p> Created on: {galleryItem.date}</p>
-                    <p>pixel count: {galleryItem.pixels.length}</p>
-                    <p>width: {galleryItem.width}</p>
-                </div>
-            </div>
-        )
-      } catch(err){
-          console.error(err)
-      }
-    }
-  )
+    return(
+      <div className={classes.galleryItem}>
+          <div className={classes.contents}>
+              <p>Author: {galleryItem.author}</p>
+              <p>Created on: {galleryItem.date}</p>
+              <p>pixel count: {galleryItem.pixels.length}</p>
+          </div>
+      </div>
+    )
+  })
 
   return (
     <div className={classes.root}>
+      <h1>Gallery</h1>
         <div className={classes.galleryDisplay}>
             {galleryItems}
         </div>

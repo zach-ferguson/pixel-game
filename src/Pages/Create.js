@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import api from '../Utils/api';
-import { DebouncedPicker } from '../Components/ColorPicker';
+import { DebouncedPicker } from '../Components/Create/ColorPicker';
 import { makeStyles } from '@mui/styles';
-import Footer from '../Components/Footer';
-import addIcon from "../Images/icons8-add-64.png";
-import minusIcon from "../Images/icons8-minus-sign-64.png";
-
+import CreateTools from '../Components/Create/CreateTools';
 const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
@@ -36,7 +33,7 @@ const useStyles = makeStyles(() => ({
   colorPicker:{
     marginTop: '300px',
   }, 
-  footer:{ 
+  createTools:{ 
     width: '100%',
     height: '10%',
     position: 'fixed',
@@ -49,7 +46,6 @@ const useStyles = makeStyles(() => ({
 
 function Create() {
   const classes = useStyles();
-  const [data, setData] = useState([])
   const [pixels, setPixels] = useState([])
   const [color, setColor] = useState('#000000')
   const [tool, setTool] = useState(0)
@@ -57,16 +53,6 @@ function Create() {
   const [update, setUpdate] = useState(false)
   const [showBorder, setShowBorder] = useState(true)
   const [width, setWidth] = useState(18)
-
-  const getUserData = async() => {
-    try{
-      const data = await api.get('/users/')
-      console.log(data)
-      setData(data.data)
-    } catch(err){
-      console.error(err)
-    }
-  }
 
   const getPixelData = async() => {
     try{
@@ -78,7 +64,6 @@ function Create() {
   }
 
   useEffect(() => {
-    getUserData();
     getPixelData();
   },[])
 
@@ -95,6 +80,8 @@ function Create() {
         break;
       case 3: 
         deletePixel(id);
+        break;
+      default:
         break;
     }
   }
@@ -122,7 +109,7 @@ function Create() {
   }
 
   useEffect(() => {
-    if(update == true){
+    if(update === true){
       getPixelData();
       setUpdate(!update)
     }
@@ -133,7 +120,7 @@ function Create() {
       const addPixelReq = await api.post('/pixels', {
         color : "#FFFFFF"
       })
-      if(addPixelReq.status == 201){
+      if(addPixelReq.status === 201){
         setUpdate(1)
       }
     } catch(err){ 
@@ -146,7 +133,7 @@ function Create() {
       const deletePixelReq = await api.delete('/pixels/' + id, {
         id: id
       })
-      if(deletePixelReq.status == 200){
+      if(deletePixelReq.status === 200){
         setUpdate(1)
         console.log(deletePixelReq)
       }
@@ -161,10 +148,10 @@ function Create() {
         width: width,
         pixels: pixels,
         date: new Date(),
-        author: ["anonymous"]
+        author: ["admin"]
       })
       console.log(saveReq)
-      if(saveReq.status == 200){
+      if(saveReq.status === 200){
         console.log('SUCCESS!')
       }
     } catch(err) {
@@ -194,7 +181,7 @@ function Create() {
         </div>
         <DebouncedPicker color={color} onChange={setColor} selectedColor={selectedColor} setSelectedColor={setSelectedColor}/>
         {selectedColor}
-        <Footer className={classes.footer}
+        <CreateTools className={classes.createTools}
             tool={tool} 
             setTool={setTool} 
             showBorder={showBorder} 

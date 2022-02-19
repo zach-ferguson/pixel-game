@@ -1,14 +1,15 @@
 import React from 'react'
 import { makeStyles } from '@mui/styles';
-import dropperIcon from '../Images/icons8-color-dropper-64.png';
-import saveIcon from '../Images/icons8-save-64.png';
-import borderIcon from '../Images/icons8-sewing-patch-64.png';
-import plusIcon from '../Images/icons8-plus-+-64.png'
-import plusIcon2 from '../Images/icons8-plus-+2-64.png'
-import minusIcon from '../Images/icons8-minus-64.png'
-import deleteIcon from '../Images/icons8-cancel-64.png'
-import newIcon from '../Images/icons8-drawing-block-64.png'
-
+import dropperIcon from '../../Images/icons8-color-dropper-64.png';
+import saveIcon from '../../Images/icons8-save-64.png';
+import borderIcon from '../../Images/icons8-sewing-patch-64.png';
+import plusIcon from '../../Images/icons8-plus-+-64.png'
+import plusIcon2 from '../../Images/icons8-plus-+2-64.png'
+import minusIcon from '../../Images/icons8-minus-64.png'
+import deleteIcon from '../../Images/icons8-cancel-64.png'
+import newIcon from '../../Images/icons8-image-file-add-64.png'
+import editIcon from '../../Images/icons8-edit-50.png'
+import eraseIcon from '../../Images/icons8-erase-50.png'
 
 const useStyles = makeStyles(() => ({
     root:{
@@ -78,42 +79,42 @@ const useStyles = makeStyles(() => ({
     // use to determine width and number of pixels
   }
 
-function Footer(props) {
+function CreateTools(props) {
     const classes = useStyles();
     return (
         <div className={classes.root}>
           <div className={classes.toolbar}>
             <div className={classes.iconSection}>
               <span className={classes.sectionTitle}>Tools</span> 
-              <div className={classes.sectionicons}>
-                <img className={props.tool === 0? classes.selectedIcon : classes.icon} alt src={process.env.PUBLIC_URL + '/icons8-edit-50.png'} onClick={() => { props.setTool(0) }}/>
-                <img className={props.tool === 1? classes.selectedIcon : classes.icon} src={process.env.PUBLIC_URL + '/icons8-erase-50.png'} onClick={() => { props.setTool(1) }}/>
-                <img className={props.tool === 2? classes.selectedIcon : classes.icon} src={dropperIcon} onClick={() => { props.setTool(2) }}/>
+              <div className={classes.sectionIcons}>
+                <img className={props.tool === 0? classes.selectedIcon : classes.icon} alt='edit' src={ editIcon } onClick={() => { props.setTool(0) }}/>
+                <img className={props.tool === 1? classes.selectedIcon : classes.icon} alt='erase' src={ eraseIcon } onClick={() => { props.setTool(1) }}/>
+                <img className={props.tool === 2? classes.selectedIcon : classes.icon} alt='dropper' src={ dropperIcon } onClick={() => { props.setTool(2) }}/>
               </div>
             </div>
             <div className={classes.divider} />
             <div className={classes.iconSection}>
               <span className={classes.sectionTitle}>Pixels</span>
               <div className={classes.sectionicons}>
-                <img className={classes.icon} src={plusIcon2} onClick={() => { props.addPixel(); }}/>
-                <img className={props.tool === 3? classes.selectedIcon : classes.icon} src={deleteIcon} onClick={() => { props.setTool(3) }}/>
+                <img className={classes.icon} src={plusIcon2} alt='add-pixel' onClick={() => { props.addPixel(); }}/>
+                <img className={props.tool === 3? classes.selectedIcon : classes.icon} alt='remove-pixel' src={ deleteIcon } onClick={() => { props.setTool(3) }}/>
                 </div>
             </div>
             <div className={classes.divider} />
             <div className={classes.iconSection}>
               <span className={classes.sectionTitle}>Width</span>
               <div className={classes.sectionicons}>
-                <img className={classes.icon} src={plusIcon} onClick={() => { props.setWidth(props.width + 1) }}/>
-                <img className={classes.icon} src={minusIcon} onClick={() => { props.setWidth(props.width - 1) }}/>
+                <img className={classes.icon} src={ plusIcon } alt='add-pixel' onClick={() => { props.setWidth(props.width + 1) }}/>
+                <img className={classes.icon} src={ minusIcon } alt='remove-pixel' onClick={() => { props.setWidth(props.width - 1) }}/>
               </div>
             </div>
             <div className={classes.divider} />
             <div className={classes.iconSection}>
               <span className={classes.sectionTitle}>Utilities</span>
               <div className={classes.sectionicons}>
-                <img className={classes.icon} src={borderIcon} onClick={() => { props.setShowBorder( !props.showBorder ); }}/>
-                <img className={classes.icon} src={saveIcon} onClick={() => { props.handleSaveToGallery(); }}/>
-                <img className={classes.icon} src={newIcon} onClick={() => { handleNew(); }}/>
+                <img className={classes.icon} src={ borderIcon } alt='border' onClick={() => { props.setShowBorder( !props.showBorder ); }}/>
+                <img className={classes.icon} src={ saveIcon } alt='save' onClick={() => { props.handleSaveToGallery(); }}/>
+                <img className={classes.icon} src={ newIcon } alt='new' onClick={() => { handleNew(); }}/>
               </div>
             </div>
           </div>
@@ -124,4 +125,4 @@ function Footer(props) {
     )
 }
 
-export default Footer
+export default CreateTools

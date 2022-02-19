@@ -1,13 +1,19 @@
-import React from 'react';
-import { makeStyles, mergeClasses } from '@mui/styles';
-import addIcon from "../Images/icons8-add-64.png"
-import minusIcon from "../Images/icons8-minus-sign-64.png"
+import React, { useEffect } from 'react';
+import { makeStyles } from '@mui/styles';
 import createIcon from "../Images/icons8-create-64.png"
 import galleryIcon from "../Images/icons8-gallery-64.png"
+import loadingSpinner from "../Images/icons8-loading-sign-64.png"
 import { Link } from 'react-router-dom';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
+import { useAuth0 } from "@auth0/auth0-react";
+import UserInfo from './Gallery/UserInfo';
 
 const useStyles = makeStyles(() => ({
     root: {
+        width: '100px',
+        maxWidth: '100px',
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -15,11 +21,12 @@ const useStyles = makeStyles(() => ({
         left: 0,
         marginRight: 'auto',
         marginTop: '2rem',
+        marginLeft: '1rem'
     },
     menuButton:{
         margin: '.25rem',
         borderRadius: '10px',
-        transition: '.25s',
+        transition: '.2s',
         backgroundColor: '#715B64',
         '&:hover': {
             opacity: '50%',
@@ -30,28 +37,64 @@ const useStyles = makeStyles(() => ({
     link:{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
-    }
+        alignItems: 'center',
+        color: 'black',
+        textDecoration: 'none'
+    },
+    loginSection: {
+        marginTop: 'auto',
+        marginBottom: '100px',
+        textAlign: 'center'
+    },
+    loadingSpinner:{
+        marginTop: 'auto',
+        marginBottom: '100px',
+        textAlign: 'center',
+        animation: `$spin 1s linear infinite`
+    },
+    "@keyframes spin": {
+        '0%':{
+            transform: 'rotate(0deg)'
+
+        },
+        '100%':{
+            transform: 'rotate(360deg)'
+        }
+    },
 }))
 
 
 function SideMenu() {
+    const { user, isAuthenticated, isLoading } = useAuth0();
     const classes = useStyles();
     
+    useEffect(() => {
+        console.log(user)
+    },[user])
+    
+
   return (
     <div className={classes.root}>
         <Link to='/' className={classes.link}>
             <button className={classes.menuButton}>
-                <img src={galleryIcon} /> 
+                <img alt='gallery' src={galleryIcon} /> 
             </button>
             <span>Gallery</span>
         </Link>
         <Link to='/create' className={classes.link}>
             <button className={classes.menuButton}>
-                <img src={createIcon} /> 
+                <img alt='create' src={createIcon} /> 
             </button>
             <span>Create</span>
         </Link>
+        {isLoading? <img alt='loading-spinner' className={classes.loadingSpinner} src={ loadingSpinner }/> : 
+            <div id='login-section' className={classes.loginSection}> 
+                { user? <LogoutButton /> : <LoginButton /> }
+                { user && (
+                    <UserInfo/>
+                )}
+            </div>
+        }
     </div>
   )
 }
