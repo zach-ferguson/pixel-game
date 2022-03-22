@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import loginIcon from '../Images/icons8-key-64.png'
+import logoutIcon from '../../Images/icons8-logout-64.png'
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() => ({
@@ -25,18 +25,19 @@ const useStyles = makeStyles(() => ({
 }))
 
 
-const LoginButton = () => {
+const LogoutButton = () => {
   const classes = useStyles();
-  const { loginWithRedirect } = useAuth0();
+  const { logout } = useAuth0();
 
   return (
     <div className={classes.container}>
       <button className={classes.button}>
-        <img src={ loginIcon } alt='login' onClick={() => loginWithRedirect()} />
+        <img src={ logoutIcon } alt='login' onClick={() => logout({ returnTo: window.location.origin })} />
       </button>
-      <span>Login</span>
+      <span>Logout</span>
     </div>
-  )
+
+  );
 };
 
-export default LoginButton;
+export default LogoutButton;

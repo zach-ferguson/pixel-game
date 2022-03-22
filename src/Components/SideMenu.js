@@ -1,100 +1,42 @@
-import React, { useEffect } from 'react';
-import { makeStyles } from '@mui/styles';
+import React from 'react';
 import createIcon from "../Images/icons8-create-64.png"
 import galleryIcon from "../Images/icons8-gallery-64.png"
+import bugIcon from "../Images/icons8-bug-64.png"
 import loadingSpinner from "../Images/icons8-loading-sign-64.png"
 import { Link } from 'react-router-dom';
-import LoginButton from './LoginButton';
-import LogoutButton from './LogoutButton';
+import LoginButton from './Users/LoginButton';
 import { useAuth0 } from "@auth0/auth0-react";
-import UserInfo from './Gallery/UserInfo';
-
-const useStyles = makeStyles(() => ({
-    root: {
-        width: '100px',
-        maxWidth: '100px',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        position: 'absolute',
-        left: 0,
-        marginRight: 'auto',
-        marginTop: '2rem',
-        marginLeft: '1rem'
-    },
-    menuButton:{
-        margin: '.25rem',
-        borderRadius: '10px',
-        transition: '.2s',
-        backgroundColor: '#715B64',
-        '&:hover': {
-            opacity: '50%',
-            transition: '.25s',
-            cursor: 'pointer',
-        }
-    },
-    link:{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        color: 'black',
-        textDecoration: 'none'
-    },
-    loginSection: {
-        marginTop: 'auto',
-        marginBottom: '100px',
-        textAlign: 'center'
-    },
-    loadingSpinner:{
-        marginTop: 'auto',
-        marginBottom: '100px',
-        textAlign: 'center',
-        animation: `$spin 1s linear infinite`
-    },
-    "@keyframes spin": {
-        '0%':{
-            transform: 'rotate(0deg)'
-
-        },
-        '100%':{
-            transform: 'rotate(360deg)'
-        }
-    },
-}))
-
+import UserInfo from './Users/UserInfo';
 
 function SideMenu() {
-    const { user, isAuthenticated, isLoading } = useAuth0();
-    const classes = useStyles();
-    
-    useEffect(() => {
-        console.log(user)
-    },[user])
-    
+    const { user, isLoading } = useAuth0();
 
   return (
-    <div className={classes.root}>
-        <Link to='/' className={classes.link}>
-            <button className={classes.menuButton}>
-                <img alt='gallery' src={galleryIcon} /> 
-            </button>
-            <span>Gallery</span>
-        </Link>
-        <Link to='/create' className={classes.link}>
-            <button className={classes.menuButton}>
-                <img alt='create' src={createIcon} /> 
-            </button>
-            <span>Create</span>
-        </Link>
-        {isLoading? <img alt='loading-spinner' className={classes.loadingSpinner} src={ loadingSpinner }/> : 
-            <div id='login-section' className={classes.loginSection}> 
-                { user? <LogoutButton /> : <LoginButton /> }
-                { user && (
-                    <UserInfo/>
-                )}
-            </div>
-        }
+    <div className='absolute w-28 h-full flex-col items-center left-0 '>
+      <Link to='/' className='m-1 flex-col items-center justify-center'>
+        <button className='w-16 h-16 mx-auto flex justify-center items-center rounded-lg bg-secondary transition ease-in-out duration-100 hover:opacity-50 hover:cursor-pointer border-2 border-b-zinc-900 border-r-zinc-900 border-t-zinc-600 border-l-zinc-600'>
+          <img className='w-12 h-12' alt='gallery' src={galleryIcon} />
+        </button>
+        <p className='w-fit mx-auto'>Gallery</p>
+      </Link>
+      <Link to='/create' className='my-1 flex-col items-center'>
+        <button className='w-16 h-16 mx-auto flex justify-center items-center rounded-lg bg-secondary transition ease-in-out duration-100 hover:opacity-50 hover:cursor-pointer border-2 border-b-zinc-900 border-r-zinc-900 border-t-zinc-600 border-l-zinc-600'>
+          <img className='w-14 h-14' alt='create' src={createIcon} /> 
+        </button>
+        <p className='w-fit mx-auto'>Create New</p>
+      </Link>
+      {isLoading? <img alt='loading-spinner' className='animate-spin mx-auto mt-40' src={ loadingSpinner }/> : 
+        <div id='login-section' className='text-center mt-40'> 
+          <LoginButton />
+          { user && <UserInfo/> }
+        </div>
+      }
+      <a href="mailto:z.h.ferguson@gmail.com" className='w-fit h-fit flex-col items-center justify-center'>
+        <button className='w-16 h-16 mt-6 mx-auto flex justify-center items-center rounded-lg bg-secondary transition ease-in-out duration-100 hover:opacity-50 hover:cursor-pointer border-2 border-b-zinc-900 border-r-zinc-900 border-t-zinc-600 border-l-zinc-600'>
+          <img className='w-12 h-12' alt='bug-icon' src={ bugIcon }/>
+        </button>
+        <p className='w-fit mx-auto'>Report Bug</p>
+      </a>
     </div>
   )
 }
