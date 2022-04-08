@@ -54,6 +54,7 @@ export const createNewGalleryItem = createAsyncThunk(
       authors: [author],
       collab: collabEnabled
     })
+    console.log(res.data)
     return res.data
   }
 )
@@ -109,7 +110,6 @@ const editorSlice = createSlice({
   reducers:{
     setActiveGalleryItem(state, action){
       const { targetGalleryItem } = action.payload
-      console.log('setActive Reducer, ', targetGalleryItem)
       state.activeGalleryItem = targetGalleryItem
     }
   },

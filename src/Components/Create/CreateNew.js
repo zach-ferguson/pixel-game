@@ -1,10 +1,13 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { fetchGalleryItems } from '../Gallery/gallerySlice'
 import { createNewGalleryItem } from './editorSlice'
 
 function CreateNew() {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth0();
   const [name, setName] = useState('untitled')
   const [width, setWidth] = useState(20)
@@ -18,13 +21,16 @@ function CreateNew() {
 
   const createNew = async() => {
     try {
+      console.log(name, width, height, user.name, collabEnabled )
       await dispatch(createNewGalleryItem({
         itemName: name,
         width: width,
         height: height, 
         author: user.name,
-        collab: collabEnabled,
+        collabEnabled: collabEnabled,
       })).unwrap()
+      dispatch(fetchGalleryItems())
+      navigate('/')
     } catch(err) {
       console.log(err)
     }

@@ -2,6 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { fetchGalleryItems } from '../Gallery/gallerySlice'
 import { forkActiveGalleryItem } from './editorSlice'
 
 export default function Fork({ open, close, title }) {
@@ -21,6 +22,7 @@ export default function Fork({ open, close, title }) {
         author: user.name,
         collab: collabEnabled,
       })).unwrap()
+      dispatch(fetchGalleryItems())
       navigate('/')
     } catch(err){
       console.log(err);
