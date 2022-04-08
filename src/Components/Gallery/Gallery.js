@@ -23,14 +23,14 @@ let GalleryItem = ({ galleryItemId }) => {
 
   return ( 
     <Link to={`create/${galleryItem.id}`}>
-      <div className='flex flex-col rounded-lg bg-slate-50 border-2 border-b-stone-400 border-r-stone-400 border-t-stone-300 border-l-stone-300 transition ease-in-out duration-100 hover:border-b-stone-700 hover:border-r-stone-700 hover:border-t-stone-400 hover:border-l-stone-400'>
+      <div id="gallery-item-card" className='flex flex-col rounded-lg bg-slate-50 border-2 border-b-stone-400 border-r-stone-400 border-t-stone-300 border-l-stone-300 transition ease-in-out duration-100 hover:border-b-stone-700 hover:border-r-stone-700 hover:border-t-stone-400 hover:border-l-stone-400'>
         <div id='card-info'>
           <p className='w-fit mx-auto my-2 font-semibold align-self-center'>{galleryItem.name? galleryItem.name : 'untitled'}</p>
           <p className='ml-5 my-5 '>{galleryItem.authors.length > 1? 'Authors: ' : 'Author: '} {galleryItem.authors.join(', ')}</p>
           <p className='ml-5 my-5 '>Created on: {displayDate}</p>
           <p className='ml-5 my-5 '>Pixel Count: {galleryItem.pixels.length}</p>
           <p className='ml-5 my-5 '>Collaboration: {galleryItem.collab? 'Enabled' : 'Disabled'}</p>
-          <div className='w-24 h-48 -mt-48 ml-auto mr-4 mb-6 opacity-20 flex flex-wrap overflow-hidden'>
+          <div className='w-24 h-48 -mt-48 ml-auto mr-4 mb-6 opacity-10 flex flex-wrap overflow-hidden'>
             {preview}
           </div>
         </div>
@@ -71,9 +71,9 @@ function Gallery() {
   }
 
   return (
-    <div id='gallery-root' className= 'w-full m-auto pb-10 flex flex-col items-center bg-primary'>
+    <div id='gallery-root' className= 'w-full overflow-x-hidden pb-10 flex flex-col items-center bg-primary '>
       <h1 id='header' className='pt-10 text-5xl font-bold'>Gallery</h1>
-        <div id='gallery-item-container' className={galleryStatus === 'idle'? 'w-full mt-20' : 'w-1/2 mt-10 grid gap-8 grid-cols-2'}>
+        <div id='gallery-item-container' className={galleryStatus === 'idle'? 'w-full my-20' : 'w-full md:w-1/2 my-10 px-2 grid gap-1 grid-cols-2'}>
           {content}
         </div>
     </div>

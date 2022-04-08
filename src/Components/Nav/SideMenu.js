@@ -1,18 +1,18 @@
 import React from 'react';
-import createIcon from "../Images/icons8-create-64.png"
-import galleryIcon from "../Images/icons8-gallery-64.png"
-import bugIcon from "../Images/icons8-bug-64.png"
-import loadingSpinner from "../Images/icons8-loading-sign-64.png"
+import createIcon from "../../Images/icons8-create-64.png"
+import galleryIcon from "../../Images/icons8-gallery-64.png"
+import bugIcon from "../../Images/icons8-bug-64.png"
+import loadingSpinner from "../../Images/icons8-loading-sign-64.png"
 import { Link } from 'react-router-dom';
-import LoginButton from './Users/LoginButton';
+import LoginButton from '../Users/LoginButton';
 import { useAuth0 } from "@auth0/auth0-react";
-import UserInfo from './Users/UserInfo';
+import UserInfo from '../Users/UserInfo';
 
 function SideMenu() {
     const { user, isLoading } = useAuth0();
 
   return (
-    <div className='absolute w-28 h-full flex-col items-center left-0 '>
+    <div className='absolute w-28 h-full flex-col items-center left-0 invisible md:visible'>
       <Link to='/' className='m-1 flex-col items-center justify-center'>
         <button className='w-16 h-16 mx-auto flex justify-center items-center rounded-lg bg-secondary transition ease-in-out duration-100 hover:opacity-50 hover:cursor-pointer border-2 border-b-zinc-900 border-r-zinc-900 border-t-zinc-600 border-l-zinc-600'>
           <img className='w-12 h-12' alt='gallery' src={galleryIcon} />
