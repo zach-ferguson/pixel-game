@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 
 // toggle show equasions / just the calulated totals
 const GridBox = ({
-  label, subLabel, value
+  label, subLabel, value, id
 }) => (
-  <Grid container item direction='column' alignItems='center' justifyContent='center' xs={2.4} sx={{ border: '1px solid '}}>
+  <Grid key={id} container item direction='column' alignItems='center' justifyContent='center' xs={2.4} sx={{ border: '1px solid '}}>
     <Grid item>
       <Typography>{label}</Typography>
     </Grid>
