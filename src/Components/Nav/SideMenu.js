@@ -25,12 +25,18 @@ function SideMenu() {
         </button>
         <p className='w-fit mx-auto'>Create New</p>
       </Link>
-      {isLoading? <img alt='loading-spinner' className='animate-spin mx-auto mt-40' src={ loadingSpinner }/> : 
-        <div id='login-section' className='text-center mt-40'> 
+      {isLoading? <img alt='loading-spinner' className='animate-spin mx-auto mt-24' src={ loadingSpinner }/> : 
+        <div id='login-section' className='text-center mt-24'> 
           <LoginButton />
           { user && <UserInfo/> }
         </div>
       }
+      <Link to="531" className='my-1 flex-col items-center'>
+        <button className='w-16 h-16 mt-6 mx-auto flex justify-center items-center rounded-lg bg-secondary transition ease-in-out duration-100 hover:opacity-50 hover:cursor-pointer border-2 border-b-zinc-900 border-r-zinc-900 border-t-zinc-600 border-l-zinc-600'>
+          <img className='w-12 h-12' alt='bug-icon' src={ bugIcon }/>
+        </button>
+        <p className='w-fit mx-auto'>5/3/1</p>
+      </Link>
       <a href="mailto:z.h.ferguson@gmail.com" className='w-fit h-fit flex-col items-center justify-center'>
         <button className='w-16 h-16 mt-6 mx-auto flex justify-center items-center rounded-lg bg-secondary transition ease-in-out duration-100 hover:opacity-50 hover:cursor-pointer border-2 border-b-zinc-900 border-r-zinc-900 border-t-zinc-600 border-l-zinc-600'>
           <img className='w-12 h-12' alt='bug-icon' src={ bugIcon }/>

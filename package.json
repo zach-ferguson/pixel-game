@@ -5,6 +5,9 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
     "@babel/register": "^7.17.7",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/material": "^5.8.6",
     "@mui/styles": "^5.0.2",
     "@reduxjs/toolkit": "^1.7.2",
     "@testing-library/jest-dom": "^5.15.0",
