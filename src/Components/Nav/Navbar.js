@@ -7,7 +7,6 @@ function Navbar() {
   return (
     <>
       <SideMenu />
-      <MobileNav />
     </>
   )
 }
