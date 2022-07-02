@@ -69,6 +69,8 @@ function Gallery() {
   } else if(galleryStatus === 'error') {
     content = <div>{error}</div>
   }
+//  <p id='disclaimer' className='w-fit mx-auto md:invisible'>Mobile-Friendly Coming Soon!</p>
+//    <div id='gallery-item-container' className={galleryStatus === 'idle'? 'w-full mt-20' : 'w-1/2 mt-10 grid gap-8 grid-cols-2'}>
 
   return (
     <div id='gallery-root' className= 'w-full overflow-x-hidden pb-10 flex flex-col items-center bg-primary '>
